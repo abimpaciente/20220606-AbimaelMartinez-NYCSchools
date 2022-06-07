@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_SAT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="10dp"
+        android:elevation="2dp"
+        android:padding="5dp"
+        app:cardCornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_sat_scores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/score"
+                android:textSize="25sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/math_scores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/reading_scores"
+                android:layout_marginTop="2dp"
+                android:gravity="start"
+                android:padding="4dp"
+                android:text="@string/math"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_math_scores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_sat_scores"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textSize="16sp"
+                tools:text="@string/math" />
+
+            <TextView
+                android:id="@+id/reading_scores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/tv_writing_scores"
+                android:layout_marginTop="2dp"
+                android:gravity="start"
+                android:padding="4dp"
+                android:text="@string/reading"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/tv_reading_scores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_math_scores"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textSize="16sp"
+                tools:text="@string/reading" />
+
+            <TextView
+                android:id="@+id/writing_scores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_reading_scores"
+                android:layout_marginTop="2dp"
+                android:gravity="start"
+                android:padding="4dp"
+                android:text="@string/writing"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_writing_scores"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_reading_scores"
+                android:layout_marginLeft="150dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textSize="16sp"
+                tools:text="@string/writing" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/pb_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
