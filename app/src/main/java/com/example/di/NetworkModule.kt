@@ -1,12 +1,13 @@
 package com.example.di
 
+import android.content.Context
 import com.example.common.BASE_URL
+import com.example.common.InternetCheck
 import com.example.model.network.NycApy
-import com.example.model.repo.Repository
-import com.example.model.repo.RepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
@@ -16,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 @InstallIn(SingletonComponent::class)
-class ServiceModule {
+class NetworkModule {
     @Provides
     fun provideApiService(): NycApy =
         Retrofit.Builder()
@@ -24,10 +25,6 @@ class ServiceModule {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(NycApy::class.java)
-
-    @Provides
-    fun provideRepo(service: NycApy): Repository =
-        RepositoryImpl(service)
 
     @Provides
     fun provideDispatcher(): CoroutineDispatcher = Dispatchers.IO

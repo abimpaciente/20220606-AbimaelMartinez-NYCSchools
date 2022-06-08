@@ -2,15 +2,15 @@ package com.example.view.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.example.common.toast
-import com.example.model.SchoolListResponse
+import com.example.model.School
+import com.example.model.network.SchoolModel
 import com.example.nycscools.databinding.ItemSchoolsBinding
 
 class SchoolsAdapter(
-    private val items: List<SchoolListResponse>,
-    private val onClick: (SchoolListResponse) -> Unit
+    private val items: List<School>,
+    private val onClick: (School) -> Unit
 ) :
     RecyclerView.Adapter<SchoolsAdapter.SchoolsViewHolder>() {
 
@@ -26,7 +26,7 @@ class SchoolsAdapter(
             )
         )
 
-    override fun onBindViewHolder(holder: SchoolsAdapter.SchoolsViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SchoolsViewHolder, position: Int) {
         try {
             holder.binding.schoolName.text = items[position].school_name
             holder.binding.schoolLocation.text = items[position].location

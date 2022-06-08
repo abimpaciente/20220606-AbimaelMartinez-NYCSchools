@@ -1,18 +1,8 @@
-package com.example.model
+package com.example.model.network
 
 import com.google.gson.annotations.SerializedName
 
-data class SchoolListResponse(
-    val dbn: String,
-    val school_name: String,
-    val location: String,
-    val latitude: String,
-    val longitude: String,
-    @SerializedName("school_email")
-    val schoolEmail: String
-)
-
-data class SchoolSatResponse(
+data class SchoolSatModel(
     val dbn: String,
     @SerializedName("num_of_sat_test_takers")
     val satTestTakers: String,

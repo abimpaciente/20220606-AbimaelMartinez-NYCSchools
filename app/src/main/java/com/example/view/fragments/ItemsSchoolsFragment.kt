@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.common.toast
-import com.example.model.SchoolListResponse
+import com.example.model.School
 import com.example.model.StateUI
 import com.example.nycscools.R
 import com.example.nycscools.databinding.SchoolsListFragmentBinding
@@ -26,6 +26,10 @@ class ItemsSchoolsFragment : FragmentViewModel() {
 
         initObservers()
 
+        binding.lyRecyclers.setOnRefreshListener {
+            viewModel.getSchools()
+        }
+
         return binding.root
     }
 
@@ -34,32 +38,34 @@ class ItemsSchoolsFragment : FragmentViewModel() {
         viewModel.schoolLiveData.observe(viewLifecycleOwner) { state ->
             when (state) {
                 is StateUI.Loading -> {
-                    binding.pbLoading.visibility = View.VISIBLE
+                    binding.lyRecyclers.isRefreshing = true
                 }
                 is StateUI.Success<*> -> {
                     binding.apply {
-                        pbLoading.visibility = View.GONE
-                        val schools = state.response as? List<SchoolListResponse>
-                        schools?.let {
-                            binding.rvSchoolList.adapter = SchoolsAdapter(schools) {
+                        val schoolModels = state.response as List<School>
+                        schoolModels.let {
+                            binding.rvSchoolList.adapter = SchoolsAdapter(schoolModels) {
                                 onClick(it)
                             }
                         }
-                        binding.root.context.toast("Schools ${schools?.size}")
                     }
                 }
                 is StateUI.Error -> {
                     binding.apply {
-                        pbLoading.visibility = View.GONE
                         binding.root.context.toast("Error: ${state.error.message}")
                     }
                 }
+                is StateUI.Message -> {
+                    binding.root.context.toast(state.text)
+                }
             }
+            binding.lyRecyclers.isRefreshing = false
         }
     }
 
-    private fun onClick(school: SchoolListResponse) {
-        viewModel.setSchool(school)
+    private fun onClick(schoolModel: School) {
+        viewModel.setSchool(schoolModel)
+        viewModel.getSchoolsSat(schoolModel)
         parentFragmentManager.beginTransaction()
             .replace(R.id.frg_container, ScoreSchoolsFragment())
             .addToBackStack(null)

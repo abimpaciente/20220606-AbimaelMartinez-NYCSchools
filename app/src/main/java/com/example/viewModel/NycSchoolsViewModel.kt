@@ -3,12 +3,11 @@ package com.example.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.model.SchoolListResponse
+import com.example.model.School
 import com.example.model.StateUI
 import com.example.model.repo.Repository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,16 +21,18 @@ class NycSchoolsViewModel
     private val _schoolLiveData: MutableLiveData<StateUI> = MutableLiveData()
     val schoolLiveData: LiveData<StateUI> get() = _schoolLiveData
 
+
     private val _scoreLiveData: MutableLiveData<StateUI> = MutableLiveData(StateUI.Loading)
     val scoreLiveData: LiveData<StateUI> get() = _scoreLiveData
 
-    var currentSchool: SchoolListResponse? = null
+    var currentSchoolModel: School? = null
 
     init {
         getSchools()
     }
 
-    private fun getSchools() {
+
+    fun getSchools() {
         coroutineScope.launch {
             repository.getSchools().collect { state ->
                 _schoolLiveData.postValue(state)
@@ -39,17 +40,17 @@ class NycSchoolsViewModel
         }
     }
 
-    fun getSchoolsSat(dbn: String) {
+    fun getSchoolsSat(schoolModel: School) {
         coroutineScope.launch {
-            repository.getSchoolsSat(dbn).collect { state ->
+            repository.getSchoolsSat(schoolModel.dbn).collect { state ->
                 _scoreLiveData.postValue(state)
             }
         }
     }
 
-    fun setSchool(nycSchool: SchoolListResponse?) {
-        currentSchool = nycSchool
-        _scoreLiveData.value = StateUI.Loading
+    fun setSchool(nycSchoolModel: School) {
+        currentSchoolModel = nycSchoolModel
+//        getSchoolsSat(nycSchool.dbn)
     }
 
 }

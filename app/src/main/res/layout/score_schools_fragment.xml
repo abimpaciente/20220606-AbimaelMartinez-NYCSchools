@@ -30,19 +30,42 @@
             tools:visibility="visible">
 
             <TextView
-                android:id="@+id/tv_sat_scores"
+                android:id="@+id/tv_school"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/score"
+                android:text="@string/value_na"
                 android:textSize="25sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/takers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/tv_takers"
+                android:layout_marginTop="2dp"
+                android:gravity="start"
+                android:padding="4dp"
+                android:text="@string/takers"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tv_takers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="150dp"
+                android:layout_below="@id/tv_school"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textSize="16sp"
+                tools:text="@string/takers" />
 
             <TextView
                 android:id="@+id/math_scores"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/reading_scores"
+                android:layout_alignBaseline="@id/tv_math_scores"
                 android:layout_marginTop="2dp"
                 android:gravity="start"
                 android:padding="4dp"
@@ -54,10 +77,10 @@
                 android:id="@+id/tv_math_scores"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_sat_scores"
                 android:layout_marginLeft="150dp"
                 android:layout_marginTop="1dp"
                 android:gravity="center"
+                android:layout_below="@id/tv_takers"
                 android:padding="4dp"
                 android:textSize="16sp"
                 tools:text="@string/math" />
@@ -66,7 +89,7 @@
                 android:id="@+id/reading_scores"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/tv_writing_scores"
+                android:layout_alignBaseline="@id/tv_reading_scores"
                 android:layout_marginTop="2dp"
                 android:gravity="start"
                 android:padding="4dp"
@@ -91,7 +114,7 @@
                 android:id="@+id/writing_scores"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_reading_scores"
+                android:layout_alignBaseline="@id/tv_writing_scores"
                 android:layout_marginTop="2dp"
                 android:gravity="start"
                 android:padding="4dp"
@@ -103,9 +126,8 @@
                 android:id="@+id/tv_writing_scores"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tv_reading_scores"
                 android:layout_marginLeft="150dp"
-                android:layout_marginTop="1dp"
+                android:layout_below="@id/tv_reading_scores"
                 android:gravity="center"
                 android:padding="4dp"
                 android:textSize="16sp"
@@ -118,9 +140,9 @@
         android:id="@+id/pb_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/card_SAT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

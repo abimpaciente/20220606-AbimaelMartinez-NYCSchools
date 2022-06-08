@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">NycScools</string>
     <string name="score">Score</string>
+    <string name="school">Name: %s</string>
+    <string name="takers">Takers:</string>
     <string name="math">Math:</string>
     <string name="reading">Reading:</string>
     <string name="writing">Writing:</string>
+    <string name="value_na">NA</string>
 </resources>
